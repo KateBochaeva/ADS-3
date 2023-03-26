@@ -1,19 +1,20 @@
 // Copyright 2021 NNTU-CS
 int help(int *arr, int start, int end, int value, int quantity, int size){
   while (end>=start){
-    if (end>size || start<0)
+    if (end>size || start<0){
       return quantity;
+    }
     int midle=(end-start)/2;
     if (arr[midle]==value){
       quantity++;
-      help(arr, start, midle-1, value, quantity);
-      help(arr, midle+1, end, value, quantity);
+      help(arr, start, midle-1, value, quantity,size);
+      help(arr, midle+1, end, value, quantity,size);
     }
     if (arr[midle]>value){
-      help(arr, start, midle-1, value, quantity);
+      help(arr, start, midle-1, value, quantity,size);
     }
     if (arr[midle]<value){
-      help(arr, midle+1, end, value, quantity);
+      help(arr, midle+1, end, value, quantity,size);
     }
   } 
   return quantity;
