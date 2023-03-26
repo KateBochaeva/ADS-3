@@ -1,6 +1,6 @@
 // Copyright 2021 NNTU-CS
 int help(int *arr, int start, int end, int value, int quantity){
-  while (end-start>0){
+  while (end>=start){
     int midle=(end-start)/2;
     if (arr[midle]==value){
       quantity++;
