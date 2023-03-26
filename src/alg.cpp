@@ -2,7 +2,7 @@
 int help(int *arr, int start, int end, int value, int quantity){
   while (end>=start){
     int midle=start+(end-start)/2;
-    if (middle==end || middle==start)
+    if (midle==end || midle==start)
       return quantity;
     if (arr[midle]==value){
       quantity++;
