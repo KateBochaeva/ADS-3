@@ -1,24 +1,26 @@
 // Copyright 2021 NNTU-CS
-
-int midle(int *arr, int start, int end, int value){
-  int result;
-  int mid=(end-start)/2;
-  if (arr[mid]>value)
-    midle(*arr, mid,end,value);
-  if (arr[mid]<value)
-    midle(*arr, start,mid,value);
-  if (arr[mid]==value){
-    result++;
-    midle(*arr, start,mid,value);
-    midle(*arr, mid,end,value);
-  }
-  return result;
+void help(int *arr, int start, int end, int value, int quantity){
+  while (end-start>0){
+    int midle=(end-start)/2;
+    if (arr[midle]==value){
+      quantity++;
+      help(*arr, start, midle-1, value, quantity);
+      help(*arr, midle+1, end, value, quantity);
+    }
+    if (arr[midle]>value){
+      help(*arr, start, midle-1, value, quantity);
+    }
+    if (arr[midle]<value){
+      help(*arr, midle+1, end, value, quantity);
+    }
+  }  
 }
 int cbinsearch(int *arr, int size, int value) {
-  int result=midle(*arr, 0, size, value);
-  
-  if (result != 0)
-    return result;
+  int start=0;
+  int quantity=0;
+  help(*arr, 0, size, value, quantity);
+  if (quantity>0)
+    return quantity;
   else
     return 0; // если ничего не найдено
 }
